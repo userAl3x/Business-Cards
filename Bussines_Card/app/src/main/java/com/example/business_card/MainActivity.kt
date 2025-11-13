@@ -14,6 +14,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.state.ToggleableState
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.business_card.ui.theme.Business_CardTheme
 
@@ -53,4 +54,15 @@ fun BusinessCard(modifier: Modifier = Modifier) {
     var showApellidos by remember { mutableStateOf(true) }
     var showCargo by remember { mutableStateOf(true) }
     var showEmpresa by remember { mutableStateOf(true) }
+    // Switch para color de fondo de la tarjeta
+    var fondoColorido by remember { mutableStateOf(false) }
+
+    // TriState para estilo de tarjeta (borde)
+    var estadoTriState by remember { mutableStateOf(ToggleableState.Indeterminate) }
+
+    // Radio Buttons para selección de icono
+    var iconoSeleccionado by remember { mutableStateOf("Estrella") }
+
+    // Selector de fondo (0-3)
+    var fondoSeleccionado by remember { mutableStateOf(0) }
 }
