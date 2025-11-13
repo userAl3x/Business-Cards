@@ -42,9 +42,11 @@ import androidx.compose.ui.unit.sp
 import com.example.business_card.ui.theme.Business_CardTheme
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.material3.Button
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.Switch
 import androidx.compose.material3.TextField
+import androidx.compose.material3.TriStateCheckbox
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -121,7 +123,7 @@ fun BusinessCard(modifier: Modifier = Modifier) {
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(bottom = 16.dp),
-
+            /* comentar a ivan
             //Añadimos estas lineas para quitar un punto que aparece en la linea del progress bar
             trackColor = MaterialTheme.colorScheme.surfaceVariant,
             color = if (progreso > 0f) {
@@ -129,6 +131,8 @@ fun BusinessCard(modifier: Modifier = Modifier) {
             } else {
                 Color.Transparent  // Invisible cuando es 0
             }
+
+             */
         )
 
         // Tarjeta
@@ -344,6 +348,41 @@ fun BusinessCard(modifier: Modifier = Modifier) {
         )
 
         Spacer(modifier = Modifier.height(16.dp))
+
+        // Botón para actualizar la tarjeta
+        Button(
+            onClick = {
+                cardName = inputName.ifEmpty { "Tu Nombre" }
+                cardApellidos = inputApellidos
+                cardCargo = inputCargo
+                cardEmpresa = inputEmpresa
+                cardEmail = inputEmail
+                cardTelefono = inputTelefono
+            },
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Text("Actualizar Tarjeta")
+        }
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        // TriStateCheckbox para ajustar el borde
+        Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Start) {
+            TriStateCheckbox(
+                state = estadoTriState,
+                onClick = {
+                    estadoTriState = when(estadoTriState) {
+                        ToggleableState.Off -> ToggleableState.Indeterminate
+                        ToggleableState.Indeterminate -> ToggleableState.On
+                        ToggleableState.On -> ToggleableState.Off
+                    }
+                }
+            )
+            Text("Borde de tarjeta (Off/Medio/Grueso)")
+        }
+
+        Spacer(modifier = Modifier.height(16.dp))
+
     }
 }
 
