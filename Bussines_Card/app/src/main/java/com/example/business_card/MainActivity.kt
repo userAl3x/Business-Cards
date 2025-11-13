@@ -44,6 +44,8 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Button
 import androidx.compose.material3.Checkbox
+import androidx.compose.material3.FilterChip
+import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Switch
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TriStateCheckbox
@@ -383,6 +385,45 @@ fun BusinessCard(modifier: Modifier = Modifier) {
 
         Spacer(modifier = Modifier.height(16.dp))
 
+        // Radio Buttons para seleccionar icono
+        Text("Selecciona un icono:", style = MaterialTheme.typography.titleMedium)
+
+        val iconos = listOf("Estrella", "Casa", "Favorito", "Configuración")
+
+        iconos.forEach { icono ->
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                RadioButton(
+                    selected = iconoSeleccionado == icono,
+                    onClick = { iconoSeleccionado = icono }
+                )
+                Icon(
+                    imageVector = obtenerIcono(icono),
+                    contentDescription = icono,
+                    modifier = Modifier.size(20.dp).padding(start = 8.dp)
+                )
+                Text(text = icono, modifier = Modifier.padding(start = 8.dp))
+            }
+        }
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        // Selector de imagen de fondo
+        Text("Imagen de fondo:", style = MaterialTheme.typography.titleMedium)
+        Row(
+            horizontalArrangement = Arrangement.spacedBy(8.dp),
+            modifier = Modifier.padding(top = 8.dp)
+        ) {
+            repeat(4) { index ->
+                FilterChip(
+                    selected = fondoSeleccionado == index,
+                    onClick = { fondoSeleccionado = index },
+                    label = { Text("Fondo ${index + 1}") }
+                )
+            }
+        }
     }
 }
 
