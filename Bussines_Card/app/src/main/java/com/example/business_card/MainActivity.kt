@@ -4,8 +4,14 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.LinearProgressIndicator
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -16,6 +22,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.state.ToggleableState
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.example.business_card.ui.theme.Business_CardTheme
 
 class MainActivity : ComponentActivity() {
@@ -72,6 +79,27 @@ fun BusinessCard(modifier: Modifier = Modifier) {
         inputName, inputApellidos, inputCargo, inputEmpresa, inputEmail, inputTelefono,
         showApellidos, showCargo, showEmpresa
     )
+
+    //Añadimos el column
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .verticalScroll(rememberScrollState())
+            .padding(20.dp)
+    ) {
+        // Progress bar Indicator
+        Text("Progreso de creación: ${(progreso * 100).toInt()}%",
+            style = MaterialTheme.typography.titleMedium,
+            modifier = Modifier.padding(bottom = 8.dp))
+
+        //
+        LinearProgressIndicator(
+            progress = { progreso },
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(bottom = 16.dp),
+        )
+    }
 }
 
 //funcion para calcular el Progreso de la ProgressBar
