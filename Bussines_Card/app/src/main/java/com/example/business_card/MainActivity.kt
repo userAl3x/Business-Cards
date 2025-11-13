@@ -179,18 +179,18 @@ fun obtenerColorFondo(fondo: Int, colorido: Boolean): Color {
         return when(fondo) {
             0 -> Color(0xFFFFFFFF)      // Blanco
             1 -> Color(0xFFEEEEEE)      // Gris
-            2 -> Color(0xFFE0E0E0)      //Gris medio-claro
-            3 -> Color(0xFF757575)      //Gris medio-oscuro
-            else -> Color(0xFFFFFFFF)   //Gris casi blanco
+            2 -> Color(0xFFE0E0E0)      // Gris medio-claro
+            3 -> Color(0xFF757575)      // Gris medio-oscuro
+            else -> Color(0xFFFFFFFF)   // Blanco
         }
     }
 
     // Fondos coloridos pero suaves
     return when(fondo) {
-        0 -> Color(0xFFE3F2FD)  // Azul claro
-        1 -> Color(0xFFFFF3E0)  // Naranja claro
-        2 -> Color(0xFFF1F8E9)  // Verde claro
-        3 -> Color(0xFFFCE4EC)  // Rosa claro
-        else -> Color(0xFFE3F2FD)
+        0 -> Color(0xFFE3F2FD)      // Azul claro
+        1 -> Color(0xFFFFF3E0)      // Naranja claro
+        2 -> Color(0xFFF1F8E9)      // Verde claro
+        3 -> Color(0xFFFCE4EC)      // Rosa claro
+        else -> Color(0xFFE3F2FD)   //Azul claro
     }
 }
