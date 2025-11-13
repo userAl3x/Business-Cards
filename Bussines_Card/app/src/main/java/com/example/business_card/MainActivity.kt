@@ -114,13 +114,21 @@ fun BusinessCard(modifier: Modifier = Modifier) {
             style = MaterialTheme.typography.titleMedium,
             modifier = Modifier.padding(bottom = 8.dp))
 
-        //
+        //Linea del progess bar
         LinearProgressIndicator(
             progress = { progreso },
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(bottom = 16.dp),
+            //Añadimos estas lineas para quitar un punto que aparece en la linea del progress bar
+            trackColor = MaterialTheme.colorScheme.surfaceVariant,
+            color = if (progreso > 0f) {
+                MaterialTheme.colorScheme.primary  // Solo cuando hay progreso
+            } else {
+                Color.Transparent  // Invisible cuando es 0
+            }
         )
+
         // Tarjeta
         Card(
             modifier = Modifier
