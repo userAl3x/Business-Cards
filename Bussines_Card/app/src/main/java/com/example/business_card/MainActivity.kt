@@ -4,22 +4,28 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.Card
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.CardDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.state.ToggleableState
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -99,6 +105,33 @@ fun BusinessCard(modifier: Modifier = Modifier) {
                 .fillMaxWidth()
                 .padding(bottom = 16.dp),
         )
+        // Tarjeta
+        Card(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(220.dp)
+                .padding(vertical = 16.dp),
+            shape = MaterialTheme.shapes.medium,
+            colors = CardDefaults.cardColors(
+                containerColor = obtenerColorFondo(fondoSeleccionado, fondoColorido
+                ),
+                contentColor = Color.Black
+            ),
+            border = BorderStroke(
+                width = when(estadoTriState) {
+                    ToggleableState.Off -> 0.dp
+                    ToggleableState.Indeterminate -> 2.dp
+                    ToggleableState.On -> 5.dp
+                },
+                color = Color.Black
+            ),
+            elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
+        ) {
+            //Box
+            Box(modifier = Modifier.fillMaxSize()) {
+
+            }
+        }
     }
 }
 
@@ -138,4 +171,26 @@ fun calcularProgreso(
     }
 
     return completados / total
+}
+
+fun obtenerColorFondo(fondo: Int, colorido: Boolean): Color {
+    if (!colorido) {
+        // Fondos neutros (grises claros)
+        return when(fondo) {
+            0 -> Color(0xFFFFFFFF)      // Blanco
+            1 -> Color(0xFFEEEEEE)      // Gris
+            2 -> Color(0xFFE0E0E0)      //Gris medio-claro
+            3 -> Color(0xFF757575)      //Gris medio-oscuro
+            else -> Color(0xFFFFFFFF)   //Gris casi blanco
+        }
+    }
+
+    // Fondos coloridos pero suaves
+    return when(fondo) {
+        0 -> Color(0xFFE3F2FD)  // Azul claro
+        1 -> Color(0xFFFFF3E0)  // Naranja claro
+        2 -> Color(0xFFF1F8E9)  // Verde claro
+        3 -> Color(0xFFFCE4EC)  // Rosa claro
+        else -> Color(0xFFE3F2FD)
+    }
 }
