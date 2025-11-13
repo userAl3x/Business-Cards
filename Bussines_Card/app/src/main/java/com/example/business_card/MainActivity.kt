@@ -19,9 +19,6 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material3.Icon
 import androidx.compose.material.icons.filled.*
-import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.Settings
-import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.Card
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
@@ -55,7 +52,9 @@ class MainActivity : ComponentActivity() {
         setContent {
             Business_CardTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                        BusinessCard()
+                    BusinessCard(
+                        modifier = Modifier.padding(innerPadding)
+                    )
                 }
             }
         }
