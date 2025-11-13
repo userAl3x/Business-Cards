@@ -45,6 +45,8 @@ import androidx.compose.ui.unit.sp
 import com.example.business_card.ui.theme.Business_CardTheme
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.material3.Checkbox
+import androidx.compose.material3.Switch
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -225,6 +227,53 @@ fun BusinessCard(modifier: Modifier = Modifier) {
                 }
             }
         }
+
+        //Spacer separador invisible
+        Spacer(modifier = Modifier.height(16.dp))  //Separador
+
+        // Switch para fondos coloridos
+        Row(
+            Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Text(text = if (fondoColorido) "Fondos Coloridos" else "Fondos Neutros")
+            Switch(
+                checked = fondoColorido,
+                onCheckedChange = { fondoColorido = it }
+            )
+        }
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        // Checkboxes para mostrar/ocultar información
+        Text("Información a incluir:", style = MaterialTheme.typography.titleMedium)
+
+        Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Start) {
+            Checkbox(
+                checked = showApellidos,
+                onCheckedChange = { showApellidos = it }
+            )
+            Text("Mostrar Apellidos")
+        }
+
+        Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Start) {
+            Checkbox(
+                checked = showCargo,
+                onCheckedChange = { showCargo = it }
+            )
+            Text("Mostrar Cargo")
+        }
+
+        Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Start) {
+            Checkbox(
+                checked = showEmpresa,
+                onCheckedChange = { showEmpresa = it }
+            )
+            Text("Mostrar Empresa")
+        }
+
+        Spacer(modifier = Modifier.height(16.dp))
     }
 }
 
