@@ -44,6 +44,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.Switch
+import androidx.compose.material3.TextField
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -280,6 +281,67 @@ fun BusinessCard(modifier: Modifier = Modifier) {
             )
             Text("Mostrar Empresa")
         }
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        // TextFields para ingresar todos los datos
+        Text("Datos personales:", style = MaterialTheme.typography.titleMedium)
+        Spacer(modifier = Modifier.height(8.dp))
+
+        TextField(
+            value = inputName,
+            onValueChange = { inputName = it },
+            label = { Text("Nombre *") },
+            modifier = Modifier.fillMaxWidth()
+        )
+
+        Spacer(modifier = Modifier.height(8.dp))
+
+        TextField(
+            value = inputApellidos,
+            onValueChange = { inputApellidos = it },
+            label = { Text("Apellidos") },
+            modifier = Modifier.fillMaxWidth(),
+            enabled = showApellidos
+        )
+
+        Spacer(modifier = Modifier.height(8.dp))
+
+        TextField(
+            value = inputCargo,
+            onValueChange = { inputCargo = it },
+            label = { Text("Cargo") },
+            modifier = Modifier.fillMaxWidth(),
+            enabled = showCargo
+        )
+
+        Spacer(modifier = Modifier.height(8.dp))
+
+        TextField(
+            value = inputEmpresa,
+            onValueChange = { inputEmpresa = it },
+            label = { Text("Empresa") },
+            modifier = Modifier.fillMaxWidth(),
+            enabled = showEmpresa
+        )
+
+        Spacer(modifier = Modifier.height(8.dp))
+
+        TextField(
+            value = inputEmail,
+            onValueChange = { inputEmail = it },
+            label = { Text("Email") },
+            modifier = Modifier.fillMaxWidth()
+        )
+
+        Spacer(modifier = Modifier.height(8.dp))
+
+        TextField(
+            value = inputTelefono,
+            onValueChange = { inputTelefono = it },
+            label = { Text("Teléfono") },
+            modifier = Modifier.fillMaxWidth()
+        )
 
         Spacer(modifier = Modifier.height(16.dp))
     }
