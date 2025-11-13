@@ -177,48 +177,48 @@ fun BusinessCard(modifier: Modifier = Modifier) {
                             modifier = Modifier.size(40.dp),
                             tint = MaterialTheme.colorScheme.primary
                         )
+                    }
 
-                        // Cargo y Empresa
-                        Column {
-                            if (showCargo && cardCargo.isNotEmpty()) {
-                                Text(
-                                    text = cardCargo,
-                                    fontSize = 16.sp,
-                                    fontWeight = FontWeight.Medium
+                    // Cargo y empresa
+                    Column {
+                        if (showCargo && cardCargo.isNotEmpty()) {
+                            Text(
+                                text = cardCargo,
+                                fontSize = 16.sp,
+                                fontWeight = FontWeight.Medium
+                            )
+                        }
+                        if (showEmpresa && cardEmpresa.isNotEmpty()) {
+                            Text(
+                                text = cardEmpresa,
+                                fontSize = 14.sp
+                            )
+                        }
+                    }
+
+                    // Información de contacto
+                    Column {
+                        if (cardEmail.isNotEmpty()) {       //Email
+                            Row(verticalAlignment = Alignment.CenterVertically) {
+                                Icon(
+                                    Icons.Default.Email,
+                                    contentDescription = null,
+                                    modifier = Modifier.size(16.dp)
                                 )
-                            }
-                            if (showEmpresa && cardEmpresa.isNotEmpty()) {
-                                Text(
-                                    text = cardEmpresa,
-                                    fontSize = 14.sp
-                                )
+                                Spacer(modifier = Modifier.width(8.dp))
+                                Text(text = cardEmail, fontSize = 12.sp)
                             }
                         }
-
-                        // Información de contacto
-                        Column {
-                            if (cardEmail.isNotEmpty()) {       //Email
-                                Row(verticalAlignment = Alignment.CenterVertically) {
-                                    Icon(
-                                        Icons.Default.Email,
-                                        contentDescription = null,
-                                        modifier = Modifier.size(16.dp)
-                                    )
-                                    Spacer(modifier = Modifier.width(8.dp))
-                                    Text(text = cardEmail, fontSize = 12.sp)
-                                }
-                            }
-                            if (cardTelefono.isNotEmpty()) {    //Telefono
-                                Spacer(modifier = Modifier.height(4.dp))
-                                Row(verticalAlignment = Alignment.CenterVertically) {
-                                    Icon(
-                                        Icons.Default.Phone,
-                                        contentDescription = null,
-                                        modifier = Modifier.size(16.dp)
-                                    )
-                                    Spacer(modifier = Modifier.width(8.dp))
-                                    Text(text = cardTelefono, fontSize = 12.sp)
-                                }
+                        if (cardTelefono.isNotEmpty()) {    //Telefono
+                            Spacer(modifier = Modifier.height(4.dp))
+                            Row(verticalAlignment = Alignment.CenterVertically) {
+                                Icon(
+                                    Icons.Default.Phone,
+                                    contentDescription = null,
+                                    modifier = Modifier.size(16.dp)
+                                )
+                                Spacer(modifier = Modifier.width(8.dp))
+                                Text(text = cardTelefono, fontSize = 12.sp)
                             }
                         }
                     }
