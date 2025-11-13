@@ -54,6 +54,7 @@ fun BusinessCard(modifier: Modifier = Modifier) {
     var showApellidos by remember { mutableStateOf(true) }
     var showCargo by remember { mutableStateOf(true) }
     var showEmpresa by remember { mutableStateOf(true) }
+
     // Switch para color de fondo de la tarjeta
     var fondoColorido by remember { mutableStateOf(false) }
 
@@ -65,4 +66,48 @@ fun BusinessCard(modifier: Modifier = Modifier) {
 
     // Selector de fondo (0-3)
     var fondoSeleccionado by remember { mutableStateOf(0) }
+
+    // Progress Indicator
+    val progreso = calcularProgreso(
+        inputName, inputApellidos, inputCargo, inputEmpresa, inputEmail, inputTelefono,
+        showApellidos, showCargo, showEmpresa
+    )
+}
+
+//funcion para calcular el Progreso de la ProgressBar
+fun calcularProgreso(
+    nombre: String,
+    apellidos: String,
+    cargo: String,
+    empresa: String,
+    email: String,
+    telefono: String,
+    showApellidos: Boolean,
+    showCargo: Boolean,
+    showEmpresa: Boolean
+
+): Float {
+    var completados = 0f
+    val total = 6f
+
+    if (nombre.isNotEmpty()) {
+        completados++
+    }
+    if (apellidos.isNotEmpty() && showApellidos) {
+        completados++
+    }
+    if (cargo.isNotEmpty() && showCargo) {
+        completados++
+    }
+    if (empresa.isNotEmpty() && showEmpresa) {
+        completados++
+    }
+    if (email.isNotEmpty()) {
+        completados++
+    }
+    if (telefono.isNotEmpty()) {
+        completados++
+    }
+
+    return completados / total
 }
