@@ -5,8 +5,11 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -14,7 +17,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material3.Icon
+import androidx.compose.material.icons.filled.*
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.filled.Star
@@ -29,13 +33,18 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.state.ToggleableState
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.example.business_card.ui.theme.Business_CardTheme
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -135,7 +144,85 @@ fun BusinessCard(modifier: Modifier = Modifier) {
         ) {
             //Box
             Box(modifier = Modifier.fillMaxSize()) {
+                Column(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(20.dp),
+                    verticalArrangement = Arrangement.SpaceBetween
+                ) {
+                    // Encabezado con nombre e icono
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Column {
+                            Text(
+                                text = cardName,
+                                fontSize = 24.sp,
+                                fontWeight = FontWeight.Bold
+                            )
+                            if (showApellidos && cardApellidos.isNotEmpty()) {
+                                Text(
+                                    text = cardApellidos,
+                                    fontSize = 20.sp
+                                )
+                            }
+                        }
 
+                        // Icono seleccionado
+                        Icon(
+                            imageVector = obtenerIcono(iconoSeleccionado),
+                            contentDescription = null,
+                            modifier = Modifier.size(40.dp),
+                            tint = MaterialTheme.colorScheme.primary
+                        )
+
+                        // Cargo y Empresa
+                        Column {
+                            if (showCargo && cardCargo.isNotEmpty()) {
+                                Text(
+                                    text = cardCargo,
+                                    fontSize = 16.sp,
+                                    fontWeight = FontWeight.Medium
+                                )
+                            }
+                            if (showEmpresa && cardEmpresa.isNotEmpty()) {
+                                Text(
+                                    text = cardEmpresa,
+                                    fontSize = 14.sp
+                                )
+                            }
+                        }
+
+                        // Información de contacto
+                        Column {
+                            if (cardEmail.isNotEmpty()) {       //Email
+                                Row(verticalAlignment = Alignment.CenterVertically) {
+                                    Icon(
+                                        Icons.Default.Email,
+                                        contentDescription = null,
+                                        modifier = Modifier.size(16.dp)
+                                    )
+                                    Spacer(modifier = Modifier.width(8.dp))
+                                    Text(text = cardEmail, fontSize = 12.sp)
+                                }
+                            }
+                            if (cardTelefono.isNotEmpty()) {    //Telefono
+                                Spacer(modifier = Modifier.height(4.dp))
+                                Row(verticalAlignment = Alignment.CenterVertically) {
+                                    Icon(
+                                        Icons.Default.Phone,
+                                        contentDescription = null,
+                                        modifier = Modifier.size(16.dp)
+                                    )
+                                    Spacer(modifier = Modifier.width(8.dp))
+                                    Text(text = cardTelefono, fontSize = 12.sp)
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
     }
@@ -210,5 +297,14 @@ fun obtenerColorFondo(fondo: Int, colorido: Boolean): Color {
         2 -> Color(0xFFF1F8E9)      // Verde claro
         3 -> Color(0xFFFCE4EC)      // Rosa claro
         else -> Color(0xFFE3F2FD)   //Azul claro
+    }
+}
+
+//Preview
+@Preview(showBackground = true, showSystemUi = true)
+@Composable
+fun GreetingPreview() {
+    Business_CardTheme {
+        BusinessCard()
     }
 }
