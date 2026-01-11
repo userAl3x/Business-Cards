@@ -30,7 +30,7 @@ Aplicación Android desarrollada con Jetpack Compose que permite crear y persona
 
 ## 📸 Captura de pantalla
 
-<img src="Bussines_Card/app/src/main/java/com/example/business_card/screenshot/Screenshot_BusinessCard.png" alt="Business Card Screenshot" width="250>
+<img src="Bussines_Card/app/src/main/java/com/example/business_card/screenshot/Screenshot_BusinessCard.png" alt="Business Card Screenshot" width="250">
 
 ## 🛠️ Tecnologías utilizadas
 
